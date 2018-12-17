@@ -1,96 +1,41 @@
 "use strict";
 
-function testLast() {
-  let repetitions = 100000;
+let repetitions = 100000,
+  cutoff = 20000;
 
+function testLast() {
   let testArray = [1, 2, 3, 4];
-  let tracker = 0;
-  for (let i = 0; i < repetitions; i++) {
-    let startTime = window.performance.now();
-    testArray[testArray.length - 1];
-    let endTime = window.performance.now();
-    tracker += endTime - startTime;
-    if (i % 10000 === 0) console.log(Math.round(tracker * 10) / 10);
-  }
-  console.log(tracker);
+  let result = loopLastEntry(testArray);
+  console.log(
+    `Small array: ${repetitions} operations completed in ${result.toFixed(1)}ms`
+  );
 
   testArray = ["a", "fgdnjk", "qwrtyrupbd", "dfg", "xcvbnm"];
-  tracker = 0;
-  for (let i = 0; i < repetitions; i++) {
-    let startTime = window.performance.now();
-    testArray[testArray.length - 1];
-    let endTime = window.performance.now();
-    tracker += endTime - startTime;
-    if (i % 10000 === 0) console.log(Math.round(tracker * 10) / 10);
-  }
-  console.log(tracker);
+  result = loopLastEntry(testArray);
+  console.log(
+    `Text array: ${repetitions} operations completed in ${result.toFixed(1)}ms`
+  );
 
   testArray = [];
   for (let i = 0; i < 1000000; i++) {
     testArray.push(1);
   }
-  tracker = 0;
-  for (let i = 0; i < repetitions; i++) {
-    let startTime = window.performance.now();
-    testArray[testArray.length - 1];
-    let endTime = window.performance.now();
-    tracker += endTime - startTime;
-    if (i % 10000 === 0) console.log(Math.round(tracker * 10) / 10);
-  }
-  console.log(tracker);
+  result = loopLastEntry(testArray);
+  console.log(
+    `Big array: ${repetitions} operations completed in ${result.toFixed(1)}ms`
+  );
 }
 
-function demonstrateBatchDiscrepancies() {
-  let repetitions = 100000;
-
-  let testArray = [1, 2, 3, 4];
+function loopLastEntry(array) {
   let tracker = 0;
-  let waypoints = [];
-  for (let i = 0; i < repetitions; i++) {
-    if (i === 20000) tracker = 0;
+  for (let i = 0; i < repetitions + cutoff; i++) {
+    if (i === cutoff) tracker = 0;
     let startTime = window.performance.now();
-    testArray[testArray.length - 1];
+    array[array.length - 1];
     let endTime = window.performance.now();
     tracker += endTime - startTime;
-    if (i % 10000 === 0) waypoints.push(Math.round(tracker * 10) / 10);
   }
-  let intervals = [];
-  for (let i = 1; i < 10; i++) {
-    intervals.push(waypoints[i] - waypoints[i - 1]);
-  }
-  console.log(intervals);
-
-  testArray = [1, 2, 3, 4];
-  tracker = 0;
-  waypoints = [];
-  for (let i = 0; i < repetitions; i++) {
-    let startTime = window.performance.now();
-    testArray[testArray.length - 1];
-    let endTime = window.performance.now();
-    if (i > 10000) tracker += endTime - startTime;
-    if (i % 10000 === 0) waypoints.push(Math.round(tracker * 10) / 10);
-  }
-  intervals = [];
-  for (let i = 1; i < 10; i++) {
-    intervals.push(waypoints[i] - waypoints[i - 1]);
-  }
-  console.log(intervals);
-
-  testArray = [1, 2, 3, 4];
-  tracker = 0;
-  waypoints = [];
-  for (let i = 0; i < repetitions; i++) {
-    let startTime = window.performance.now();
-    testArray[testArray.length - 1];
-    let endTime = window.performance.now();
-    if (i > 50000) tracker += endTime - startTime;
-    if (i % 10000 === 0) waypoints.push(Math.round(tracker * 10) / 10);
-  }
-  intervals = [];
-  for (let i = 1; i < 10; i++) {
-    intervals.push(waypoints[i] - waypoints[i - 1]);
-  }
-  console.log(intervals);
+  return tracker;
 }
 
 (function() {
