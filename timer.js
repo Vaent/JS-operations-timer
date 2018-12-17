@@ -1,65 +1,61 @@
 "use strict";
 
-let repetitions = 100000,
-  cutoff = 20000,
+let repetitions = 10000,
   arrayStepSize = 5000,
   arrayNumberOfSteps = 10;
 
 function runTests() {
-  testLast();
-  testReverse();
+  test(timeToGetLastEntry, "last");
+  test(timeToReverse, "return");
 }
 
-function testLast() {
-  console.log("Test 'last' method");
+function test(method, label) {
+  console.log(`Test '${label}' method`);
+  repeat(method);
+}
+
+function repeat(method) {
   let testArray = [];
   for (let i = 1; i <= arrayNumberOfSteps; i++) {
-    for (let j = 1; j <= arrayStepSize; j++) {
-      testArray.push(1);
-    }
-    let result = loopLastEntry(testArray);
-    console.log(
-      `[${i * arrayStepSize}]: ${repetitions} operations completed in ${result.toFixed(1)}ms`
-    );
+    extend(testArray);
+    let result = loopCall(method, testArray);
+    printToConsole(i * arrayStepSize, result);
   }
 }
 
-function loopLastEntry(array) {
+function extend(array) {
+  for (let i = 1; i <= arrayStepSize; i++) {
+    array.push(1);
+  }
+}
+
+function printToConsole(arraySize, result) {
+  console.log(`[${arraySize} entries]:`);
+  console.log(
+    `  ${repetitions} operations completed in ${result.toFixed(1)}ms`
+  );
+}
+
+function loopCall(callback, array) {
   let tracker = 0;
-  for (let i = 0; i < repetitions + cutoff; i++) {
-    if (i === cutoff) tracker = 0;
-    let startTime = window.performance.now();
-    array[array.length - 1];
-    let endTime = window.performance.now();
-    tracker += endTime - startTime;
+  for (let i = 0; i < repetitions; i++) {
+    tracker += callback(array);
   }
   return tracker;
 }
 
-function testReverse() {
-  console.log("Test 'reverse' method");
-  let testArray = [];
-  for (let i = 1; i <= arrayNumberOfSteps; i++) {
-    for (let j = 1; j <= arrayStepSize; j++) {
-      testArray.push(1);
-    }
-    let result = loopReverse(testArray);
-    console.log(
-      `[${i * arrayStepSize}]: ${repetitions} operations completed in ${result.toFixed(1)}ms`
-    );
-  }
+function timeToGetLastEntry(array) {
+  let startTime = window.performance.now();
+  array[array.length - 1];
+  let endTime = window.performance.now();
+  return endTime - startTime;
 }
 
-function loopReverse(array) {
-  let tracker = 0;
-  for (let i = 0; i < repetitions + cutoff; i++) {
-    if (i === cutoff) tracker = 0;
-    let startTime = window.performance.now();
-    array.reverse();
-    let endTime = window.performance.now();
-    tracker += endTime - startTime;
-  }
-  return tracker;
+function timeToReverse(array) {
+  let startTime = window.performance.now();
+  array.reverse();
+  let endTime = window.performance.now();
+  return endTime - startTime;
 }
 
 (function() {
