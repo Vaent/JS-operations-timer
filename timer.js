@@ -1,7 +1,9 @@
 "use strict";
 
 let repetitions = 100000,
-  cutoff = 20000;
+  cutoff = 20000,
+  arrayStepSize = 5000,
+  arrayNumberOfSteps = 10;
 
 function runTests() {
   testLast();
@@ -9,26 +11,17 @@ function runTests() {
 }
 
 function testLast() {
-  let testArray = [1, 2, 3, 4];
-  let result = loopLastEntry(testArray);
-  console.log(
-    `Small array: ${repetitions} operations completed in ${result.toFixed(1)}ms`
-  );
-
-  testArray = ["a", "fgdnjk", "qwrtyrupbd", "dfg", "xcvbnm"];
-  result = loopLastEntry(testArray);
-  console.log(
-    `Text array: ${repetitions} operations completed in ${result.toFixed(1)}ms`
-  );
-
-  testArray = [];
-  for (let i = 0; i < 10000; i++) {
-    testArray.push(1);
+  console.log("Test 'last' method");
+  let testArray = [];
+  for (let i = 1; i <= arrayNumberOfSteps; i++) {
+    for (let j = 1; j <= arrayStepSize; j++) {
+      testArray.push(1);
+    }
+    let result = loopLastEntry(testArray);
+    console.log(
+      `[${i * arrayStepSize}]: ${repetitions} operations completed in ${result.toFixed(1)}ms`
+    );
   }
-  result = loopLastEntry(testArray);
-  console.log(
-    `Big array: ${repetitions} operations completed in ${result.toFixed(1)}ms`
-  );
 }
 
 function loopLastEntry(array) {
@@ -44,26 +37,17 @@ function loopLastEntry(array) {
 }
 
 function testReverse() {
-  let testArray = [1, 2, 3, 4];
-  let result = loopReverse(testArray);
-  console.log(
-    `Small array: ${repetitions} operations completed in ${result.toFixed(1)}ms`
-  );
-
-  testArray = ["a", "fgdnjk", "qwrtyrupbd", "dfg", "xcvbnm"];
-  result = loopReverse(testArray);
-  console.log(
-    `Text array: ${repetitions} operations completed in ${result.toFixed(1)}ms`
-  );
-
-  testArray = [];
-  for (let i = 0; i < 10000; i++) {
-    testArray.push(1);
+  console.log("Test 'reverse' method");
+  let testArray = [];
+  for (let i = 1; i <= arrayNumberOfSteps; i++) {
+    for (let j = 1; j <= arrayStepSize; j++) {
+      testArray.push(1);
+    }
+    let result = loopReverse(testArray);
+    console.log(
+      `[${i * arrayStepSize}]: ${repetitions} operations completed in ${result.toFixed(1)}ms`
+    );
   }
-  result = loopReverse(testArray);
-  console.log(
-    `Big array: ${repetitions} operations completed in ${result.toFixed(1)}ms`
-  );
 }
 
 function loopReverse(array) {
