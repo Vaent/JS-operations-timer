@@ -1,17 +1,24 @@
 "use strict";
 
-let repetitions = 10000,
+var chartDataCollection = [],
+  chartLegends = [],
+  singleTestData;
+
+let repetitions = 10,
   arrayStepSize = 5000,
-  arrayNumberOfSteps = 10;
+  arrayNumberOfSteps = 20;
 
 function runTests() {
   test(timeToGetLastEntry, "last");
-  test(timeToReverse, "return");
+  test(timeToReverse, "reverse");
+  test(timeToSort, "sort");
 }
 
 function test(method, label) {
   console.log(`Test '${label}' method`);
+  singleTestData = [["Array size", label]];
   repeat(method);
+  chartDataCollection.push(singleTestData);
 }
 
 function repeat(method) {
@@ -19,21 +26,14 @@ function repeat(method) {
   for (let i = 1; i <= arrayNumberOfSteps; i++) {
     extend(testArray);
     let result = loopCall(method, testArray);
-    printToConsole(i * arrayStepSize, result);
+    singleTestData.push([i * arrayStepSize, result]);
   }
 }
 
 function extend(array) {
   for (let i = 1; i <= arrayStepSize; i++) {
-    array.push(1);
+    array.push(Math.random());
   }
-}
-
-function printToConsole(arraySize, result) {
-  console.log(`[${arraySize} entries]:`);
-  console.log(
-    `  ${repetitions} operations completed in ${result.toFixed(1)}ms`
-  );
 }
 
 function loopCall(callback, array) {
@@ -58,6 +58,11 @@ function timeToReverse(array) {
   return endTime - startTime;
 }
 
-(function() {
-  document.addEventListener("load", runTests());
-})();
+function timeToSort(array) {
+  let startTime = window.performance.now();
+  array.sort();
+  let endTime = window.performance.now();
+  return endTime - startTime;
+}
+
+(function() { runTests() })();

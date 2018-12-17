@@ -4,6 +4,31 @@
     <meta charset="utf-8">
     <title>Timer</title>
     <script src="./timer.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages: ["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        chartDataCollection.forEach(function(test) {
+          var data = google.visualization.arrayToDataTable(
+            test
+          );
+
+          var options = {
+            title: `Relative time taken to execute 'array.${test[0][1]}' (or equivalent) on different sized arrays`,
+            curveType: "function",
+            legend: null,
+            width: 800,
+            height: 600
+          };
+
+          document.body.innerHTML += `<div id="${test[0][1]}"></div>`;
+          var chart = new google.visualization.LineChart(document.getElementById(`${test[0][1]}`));
+          chart.draw(data, options);
+        });
+      }
+    </script>
   </head>
   <body>
 
