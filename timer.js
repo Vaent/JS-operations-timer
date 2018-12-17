@@ -1,21 +1,20 @@
 "use strict";
 
-var chartDataCollection = [],
-  chartLegends = [],
-  singleTestData;
+var chartDataCollection = [];
 
 let repetitions = 10,
   arrayStepSize = 5000,
-  arrayNumberOfSteps = 20;
+  arrayNumberOfSteps = 20,
+  singleTestData;
 
 function runTests() {
   test(timeToGetLastEntry, "last");
   test(timeToReverse, "reverse");
   test(timeToSort, "sort");
+  test(timeToShuffle, "shuffle");
 }
 
 function test(method, label) {
-  console.log(`Test '${label}' method`);
   singleTestData = [["Array size", label]];
   repeat(method);
   chartDataCollection.push(singleTestData);
@@ -65,4 +64,11 @@ function timeToSort(array) {
   return endTime - startTime;
 }
 
-(function() { runTests() })();
+function timeToShuffle(array) {
+  let startTime = window.performance.now();
+  array.sort(function(){ return 0.5 - Math.random(); });
+  let endTime = window.performance.now();
+  return endTime - startTime;
+}
+
+(function() { runTests(); })();
