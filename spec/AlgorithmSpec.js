@@ -2,7 +2,7 @@
 
 describe ("Assign students to groups", function() {
   let testArray;
-  
+
   beforeEach (function() {
     testArray = [];
     for (let i = 1; i < 23; i++) {
@@ -20,12 +20,13 @@ describe ("Assign students to groups", function() {
     groups.forEach (function(group) {
       groupLengths.push(group.length);
     });
-    let variance = Math.Max(...groupLengths) - Math.Min(...groupLengths);
+    let variance = Math.max(...groupLengths) - Math.min(...groupLengths);
     expect([0, 1]).toContain(variance);
   });
   it ("every student is assigned to exactly 1 group", function() {
     let groups = assignStudentsToGroups(testArray, 6);
-    testArray.forEach (function(student){
+    let referenceArray = testArray.slice(0);
+    referenceArray.forEach (function(student){
       groups.forEach (function(group){
         if (group.indexOf(student) > -1) {
           group.splice(group.indexOf(student), 1);
@@ -33,6 +34,7 @@ describe ("Assign students to groups", function() {
         }
       });
     });
+    console.log(testArray);
     expect(testArray.length).toEqual(0);
     groups.forEach (function(group){
       expect(group.length).toEqual(0);
