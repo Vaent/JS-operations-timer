@@ -19,6 +19,7 @@ function doUnshiftOneElement(array) {
 }
 
 (function() {
+// test(method, label, repetitions, arrayStepSize, arrayNumberOfSteps)
   test(doLast, "last", 10, 100000, 20);
   test(doReverse, "reverse", 20, 20000, 20);
   test(doSort, "sort", 5, 20000, 20);
