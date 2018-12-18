@@ -29,7 +29,11 @@ function doAltAssignToGroups(listOfStudents) {
 }
 
 function doCheckDuplicate(array) {
-  containsDuplicate(array)
+  containsDuplicate(array);
+}
+
+function doAltCheckDuplicate(array) {
+  anotherDuplicateCheck(array);
 }
 
 (function() {
@@ -43,4 +47,5 @@ function doCheckDuplicate(array) {
   test(doAssignToGroups, "assign students to groups", 20, 10000, 20);
   test(doAltAssignToGroups, "assign students to groups, method 2", 20, 10000, 20);
   test(doCheckDuplicate, "check for duplicate", 5, 1000, 20);
+  test(doAltCheckDuplicate, "check for duplicate, method 2", 5, 1000, 20);
 })();
