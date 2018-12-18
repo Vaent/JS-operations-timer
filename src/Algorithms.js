@@ -13,3 +13,19 @@ function assignStudentsToGroups(listOfStudents, numberOfGroups) {
   }
   return groups;
 }
+
+function differentAssignGroupsMethod(listOfStudents, numberOfGroups) {
+  let students = listOfStudents.slice(0);
+  let groups = [];
+  let minSizeOfGroups = Math.floor(listOfStudents.length / numberOfGroups);
+  let excess = listOfStudents.length % numberOfGroups;
+  while (students.length > 0) {
+    let groupSize = minSizeOfGroups;
+    if (excess > 0) {
+      groupSize ++;
+      excess --;
+    }
+    groups.push(students.splice(0, groupSize));
+  }
+  return groups;
+}

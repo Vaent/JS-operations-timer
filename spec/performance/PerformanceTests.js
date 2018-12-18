@@ -24,6 +24,10 @@ function doAssignToGroups(listOfStudents) {
   assignStudentsToGroups(listOfStudents, 4);
 }
 
+function doAltAssignToGroups(listOfStudents) {
+  differentAssignGroupsMethod(listOfStudents, 4);
+}
+
 (function() {
 // test(method, label, repetitions, arrayStepSize, arrayNumberOfSteps)
   // test(doLast, "last", 10, 100000, 20);
@@ -32,4 +36,5 @@ function doAssignToGroups(listOfStudents) {
   // test(doShuffle, "shuffle", 5, 5000, 20);
   // test(doUnshiftOneElement, "unshift", 20, 20000, 20);
   test(doAssignToGroups, "assign students to groups", 20, 10000, 20);
+  test(doAltAssignToGroups, "assign students to groups, method 2", 20, 10000, 20);
 })();
