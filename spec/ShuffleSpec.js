@@ -29,7 +29,7 @@ describe ("Shuffle", function() {
       if (differences.indexOf(difference) < 0) {
         differences.push(difference);
       }
-    };
+    }
     expect(differences.length).toBeGreaterThan(referenceArray.length / 10);
   });
 });
