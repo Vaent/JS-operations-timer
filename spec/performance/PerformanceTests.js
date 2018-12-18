@@ -1,3 +1,5 @@
+"use strict";
+
 function doLast(array) {
   array[array.length - 1];
 }
