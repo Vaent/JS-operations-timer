@@ -1,24 +1,24 @@
 "use strict";
 
-function doLast(array) {
-  array[array.length - 1];
-}
-
-function doSort(array) {
-  array.sort();
-}
-
-function doReverse(array) {
-  array.reverse();
-}
-
-function doShuffle(array) {
-  array.sort(function(){ return 0.5 - Math.random(); });
-}
-
-function doUnshiftOneElement(array) {
-  array.unshift(0);
-}
+// function doLast(array) {
+//   array[array.length - 1];
+// }
+//
+// function doSort(array) {
+//   array.sort();
+// }
+//
+// function doReverse(array) {
+//   array.reverse();
+// }
+//
+// function doShuffle(array) {
+//   array.sort(function(){ return 0.5 - Math.random(); });
+// }
+//
+// function doUnshiftOneElement(array) {
+//   array.unshift(0);
+// }
 
 function doAssignToGroups(listOfStudents) {
   assignStudentsToGroups(listOfStudents, 4);

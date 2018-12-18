@@ -34,7 +34,6 @@ describe ("Assign students to groups", function() {
         }
       });
     });
-    console.log(testArray);
     expect(testArray.length).toEqual(0);
     groups.forEach (function(group){
       expect(group.length).toEqual(0);
@@ -76,7 +75,6 @@ describe ("Assign students to groups, method 2", function() {
         }
       });
     });
-    console.log(testArray);
     expect(testArray.length).toEqual(0);
     groups.forEach (function(group){
       expect(group.length).toEqual(0);

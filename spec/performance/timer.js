@@ -8,7 +8,7 @@ let repetitions,
   singleTestData;
 
 function test(method, label, repetitionsArg, arrayStepSizeArg, arrayNumberOfStepsArg) {
-  [repetitions, arrayStepSize, arrayNumberOfSteps] = [repetitionsArg, arrayStepSizeArg, arrayNumberOfStepsArg]
+  [repetitions, arrayStepSize, arrayNumberOfSteps] = [repetitionsArg, arrayStepSizeArg, arrayNumberOfStepsArg];
   singleTestData = [["Array size", label]];
   repeat(method);
   chartDataCollection.push(singleTestData);
