@@ -8,11 +8,11 @@ let repetitions,
   singleTestData;
 
 function runTests() {
-  test(timeToGetLastEntry, "last", 10, 100000, 20);
-  test(timeToReverse, "reverse", 20, 20000, 20);
-  test(timeToSort, "sort", 5, 20000, 20);
-  test(timeToShuffle, "shuffle", 5, 5000, 20);
-  test(timeToUnshiftOneElement, "unshift", 20, 20000, 20);
+  test(doLast, "last", 10, 100000, 20);
+  test(doReverse, "reverse", 20, 20000, 20);
+  test(doSort, "sort", 5, 20000, 20);
+  test(doShuffle, "shuffle", 5, 5000, 20);
+  test(doUnshiftOneElement, "unshift", 20, 20000, 20);
 }
 
 function test(method, label, repetitionsArg, arrayStepSizeArg, arrayNumberOfStepsArg) {
@@ -26,7 +26,7 @@ function repeat(method) {
   let testArray = [];
   for (let i = 1; i <= arrayNumberOfSteps; i++) {
     extend(testArray);
-    let result = loopCall(method, testArray);
+    let result = loopCall(testArray, method);
     singleTestData.push([i * arrayStepSize, result]);
   }
 }
@@ -37,47 +37,39 @@ function extend(array) {
   }
 }
 
-function loopCall(callback, array) {
+function loopCall(array, method) {
   let tracker = 0;
   for (let i = 0; i < repetitions; i++) {
-    tracker += callback(array);
+    tracker += timing(array, method);
   }
   return tracker;
 }
 
-function timeToGetLastEntry(array) {
+function timing(array, method) {
   let startTime = window.performance.now();
+  method(array);
+  let endTime = window.performance.now();
+  return endTime - startTime;
+}
+
+function doLast(array) {
   array[array.length - 1];
-  let endTime = window.performance.now();
-  return endTime - startTime;
 }
 
-function timeToReverse(array) {
-  let startTime = window.performance.now();
-  array.reverse();
-  let endTime = window.performance.now();
-  return endTime - startTime;
-}
-
-function timeToSort(array) {
-  let startTime = window.performance.now();
+function doSort(array) {
   array.sort();
-  let endTime = window.performance.now();
-  return endTime - startTime;
 }
 
-function timeToShuffle(array) {
-  let startTime = window.performance.now();
+function doReverse(array) {
+  array.reverse();
+}
+
+function doShuffle(array) {
   array.sort(function(){ return 0.5 - Math.random(); });
-  let endTime = window.performance.now();
-  return endTime - startTime;
 }
 
-function timeToUnshiftOneElement(array) {
-  let startTime = window.performance.now();
+function doUnshiftOneElement(array) {
   array.unshift(0);
-  let endTime = window.performance.now();
-  return endTime - startTime;
 }
 
 (function() { runTests(); })();
