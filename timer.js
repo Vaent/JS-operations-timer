@@ -2,19 +2,21 @@
 
 var chartDataCollection = [];
 
-let repetitions = 10,
-  arrayStepSize = 5000,
-  arrayNumberOfSteps = 20,
+let repetitions,
+  arrayStepSize,
+  arrayNumberOfSteps,
   singleTestData;
 
 function runTests() {
-  test(timeToGetLastEntry, "last");
-  test(timeToReverse, "reverse");
-  test(timeToSort, "sort");
-  test(timeToShuffle, "shuffle");
+  test(timeToGetLastEntry, "last", 10, 100000, 20);
+  test(timeToReverse, "reverse", 20, 20000, 20);
+  test(timeToSort, "sort", 5, 20000, 20);
+  test(timeToShuffle, "shuffle", 5, 5000, 20);
+  test(timeToUnshiftOneElement, "unshift", 20, 20000, 20);
 }
 
-function test(method, label) {
+function test(method, label, repetitionsArg, arrayStepSizeArg, arrayNumberOfStepsArg) {
+  [repetitions, arrayStepSize, arrayNumberOfSteps] = [repetitionsArg, arrayStepSizeArg, arrayNumberOfStepsArg]
   singleTestData = [["Array size", label]];
   repeat(method);
   chartDataCollection.push(singleTestData);
@@ -67,6 +69,13 @@ function timeToSort(array) {
 function timeToShuffle(array) {
   let startTime = window.performance.now();
   array.sort(function(){ return 0.5 - Math.random(); });
+  let endTime = window.performance.now();
+  return endTime - startTime;
+}
+
+function timeToUnshiftOneElement(array) {
+  let startTime = window.performance.now();
+  array.unshift(0);
   let endTime = window.performance.now();
   return endTime - startTime;
 }

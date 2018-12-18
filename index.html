@@ -24,7 +24,7 @@
           };
 
           document.body.innerHTML += `<div id="${test[0][1]}"></div>`;
-          var chart = new google.visualization.LineChart(document.getElementById(`${test[0][1]}`));
+          var chart = new google.visualization.ScatterChart(document.getElementById(`${test[0][1]}`));
           chart.draw(data, options);
         });
       }
