@@ -34,7 +34,7 @@ function loopCall(array, method) {
   for (let i = 0; i < repetitions; i++) {
     tracker += timing(array, method);
   }
-  return tracker;
+  return tracker / repetitions;
 }
 
 function timing(array, method) {
