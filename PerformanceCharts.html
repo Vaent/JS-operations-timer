@@ -8,31 +8,8 @@
     <script src="./src/Shuffle.js"></script>
     <script src="./spec/performance/timer.js"></script>
     <script src="./spec/performance/PerformanceTests.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load("current", {packages: ["corechart"]});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-        chartDataCollection.forEach(function(test) {
-          var data = google.visualization.arrayToDataTable(
-            test
-          );
-
-          var options = {
-            title: `Relative time taken to execute '${test[0][1]}' for different sized arrays`,
-            //curveType: "function",
-            legend: "none",
-            width: 800,
-            height: 600
-          };
-
-          document.body.innerHTML += `<div id="${test[0][1]}"></div>`;
-          var chart = new google.visualization.ScatterChart(document.getElementById(`${test[0][1]}`));
-          chart.draw(data, options);
-        });
-      }
-    </script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="./spec/performance/renderGoogleCharts.js"></script>
   </head>
   <body>
 
