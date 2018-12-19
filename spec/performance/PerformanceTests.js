@@ -40,10 +40,18 @@ function doAltAssignToGroups(listOfStudents) {
 
 // testing newly developed functions
   // test(doAssignToGroups, "assign students to groups", 20, 10000, 20);
-  test(doAltAssignToGroups, "assign students to groups, method 2", 50, 10000, 20);
+  // test(doAltAssignToGroups, "assign students to groups, method 2", 50, 10000, 20);
+
   // test(containsDuplicate, "check for duplicate", 5, 1000, 20);
-  test(anotherDuplicateCheck, "check for duplicate, method 2", 5, 10000, 20);
+  // test(anotherDuplicateCheck, "check for duplicate, method 2", 5, 10000, 20);
+
   // test(shuffle, "shuffle array", 5, 1000, 20);
-  test(gentleShuffle, "gently shuffle array", 10, 10000, 20);
-  test(shuffleCopy, "gently shuffle copied array", 10, 10000, 20);
+  // test(gentleShuffle, "gently shuffle array", 10, 10000, 20);
+  // test(shuffleCopy, "gently shuffle copied array", 10, 10000, 20);
+
+  test(reverse, "reverse array", 10, 50000, 20);
+  test(reverseCopy, "reverse copied array", 10, 50000, 20);
+  test(reverseCopyStartEmpty, "reverse copied array v2", 10, 50000, 20);
+  test(reverseCopyStartEmptyAndPush, "reverse copied array v3", 10, 50000, 20);
+  test(otherReverseCopy, "reverse copied array, method 2", 10, 50000, 20);
 })();

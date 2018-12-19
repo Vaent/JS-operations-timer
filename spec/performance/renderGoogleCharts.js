@@ -6,7 +6,7 @@ function drawChart() {
   chartDataCollection.forEach(function(test) {
     chartHTML += `<td><div id="${test[0][1]}"></div></td>`;
   });
-  chartHTML += "</tr></table>"
+  chartHTML += "</tr></table>";
   document.body.innerHTML += chartHTML;
   chartDataCollection.forEach(function(test) {
     var data = google.visualization.arrayToDataTable(
