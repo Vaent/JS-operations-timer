@@ -8,28 +8,57 @@ describe ("Shuffle", function() {
     }
   });
 
-  it ("the shuffled array is still the same length", function() {
-    let referenceArrayLength = testArray.length;
-    shuffle(testArray);
-    expect(testArray.length).toEqual(referenceArrayLength);
-  });
-  it ("the shuffled array contains all original values", function() {
-    let referenceArray = testArray.slice(0);
-    shuffle(testArray);
-    referenceArray.forEach (function(entry) {
-      expect(testArray).toContain(entry);
+  describe("method 1", function() {
+    it ("the shuffled array is still the same length", function() {
+      let referenceArrayLength = testArray.length;
+      shuffle(testArray);
+      expect(testArray.length).toEqual(referenceArrayLength);
+    });
+    it ("the shuffled array contains all original values", function() {
+      let referenceArray = testArray.slice(0);
+      shuffle(testArray);
+      referenceArray.forEach (function(entry) {
+        expect(testArray).toContain(entry);
+      });
+    });
+    it ("the array has in fact been shuffled", function() {
+      let referenceArray = testArray.slice(0);
+      shuffle(testArray);
+      let differences = [];
+      for (let i = 0; i < referenceArray.length; i++) {
+        let difference = testArray.indexOf(referenceArray[i]) - i;
+        if (differences.indexOf(difference) < 0) {
+          differences.push(difference);
+        }
+      }
+      expect(differences.length).toBeGreaterThan(referenceArray.length / 10);
     });
   });
-  it ("the array has in fact been shuffled", function() {
-    let referenceArray = testArray.slice(0);
-    shuffle(testArray);
-    let differences = [];
-    for (let i = 0; i < referenceArray.length; i++) {
-      let difference = testArray.indexOf(referenceArray[i]) - i;
-      if (differences.indexOf(difference) < 0) {
-        differences.push(difference);
+
+  describe("method 2", function() {
+    it ("the shuffled array is still the same length", function() {
+      let referenceArrayLength = testArray.length;
+      gentleShuffle(testArray);
+      expect(testArray.length).toEqual(referenceArrayLength);
+    });
+    it ("the shuffled array contains all original values", function() {
+      let referenceArray = testArray.slice(0);
+      gentleShuffle(testArray);
+      referenceArray.forEach (function(entry) {
+        expect(testArray).toContain(entry);
+      });
+    });
+    it ("the array has in fact been shuffled", function() {
+      let referenceArray = testArray.slice(0);
+      gentleShuffle(testArray);
+      let differences = [];
+      for (let i = 0; i < referenceArray.length; i++) {
+        let difference = testArray.indexOf(referenceArray[i]) - i;
+        if (differences.indexOf(difference) < 0) {
+          differences.push(difference);
+        }
       }
-    }
-    expect(differences.length).toBeGreaterThan(referenceArray.length / 10);
+      expect(differences.length).toBeGreaterThan(referenceArray.length / 10);
+    });
   });
 });

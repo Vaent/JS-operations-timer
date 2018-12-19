@@ -41,4 +41,5 @@ function doAltAssignToGroups(listOfStudents) {
   test(containsDuplicate, "check for duplicate", 5, 1000, 20);
   test(anotherDuplicateCheck, "check for duplicate, method 2", 5, 1000, 20);
   test(shuffle, "shuffle array", 5, 1000, 20);
+  test(gentleShuffle, "gently shuffle array", 5, 1000, 20);
 })();
