@@ -11,6 +11,15 @@ function shuffle(array) {
 function gentleShuffle(array) {
   for (let i = 0; i < array.length; i++) {
     let randomIndex = Math.floor(Math.random() * array.length);
-    [array[i], array[randomIndex]] = [array[randomIndex], array[i]]
+    [array[i], array[randomIndex]] = [array[randomIndex], array[i]];
   }
+}
+
+function shuffleCopy(array) {
+  let copyArray = array.slice(0);
+  for (let i = 0; i < copyArray.length; i++) {
+    let randomIndex = Math.floor(Math.random() * copyArray.length);
+    [copyArray[i], copyArray[randomIndex]] = [copyArray[randomIndex], copyArray[i]];
+  }
+  return copyArray;
 }

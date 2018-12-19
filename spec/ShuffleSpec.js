@@ -61,4 +61,33 @@ describe ("Shuffle", function() {
       expect(differences.length).toBeGreaterThan(referenceArray.length / 10);
     });
   });
+
+  describe("shuffle a copy (not amending the original)", function() {
+    it ("the shuffled array is the same length as the original", function() {
+      let shuffledArray = shuffleCopy(testArray);
+      expect(testArray.length).toEqual(shuffledArray.length);
+    });
+    it ("the shuffled array contains all original values", function() {
+      let shuffledArray = shuffleCopy(testArray);
+      testArray.forEach (function(entry) {
+        expect(shuffledArray).toContain(entry);
+      });
+    });
+    it ("the copy has in fact been shuffled", function() {
+      let shuffledArray = shuffleCopy(testArray);
+      let differences = [];
+      for (let i = 0; i < shuffledArray.length; i++) {
+        let difference = testArray.indexOf(shuffledArray[i]) - i;
+        if (differences.indexOf(difference) < 0) {
+          differences.push(difference);
+        }
+      }
+      expect(differences.length).toBeGreaterThan(testArray.length / 10);
+    });
+    it ("the original array is unchanged", function() {
+      let referenceArray = testArray.slice(0);
+      shuffleCopy(testArray);
+      expect(testArray).toEqual(referenceArray);
+    });
+  });
 });
