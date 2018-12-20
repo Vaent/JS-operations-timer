@@ -1,3 +1,5 @@
+"use strict";
+
 function selectionSort(array) {
   // given an array of values with the same data type
   // produce an array with the same values sorted from lowest to highest
