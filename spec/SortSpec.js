@@ -5,7 +5,7 @@ describe ("Sorting an array", function() {
 
   beforeEach (function() {
     testArray = [];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 100; i++) {
       testArray.push(Math.floor(Math.random() * 100));
     }
   });
