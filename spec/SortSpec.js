@@ -6,7 +6,7 @@ describe ("Sorting an array", function() {
   beforeEach (function() {
     testArray = [];
     for (let i = 0; i < 10; i++) {
-      testArray.push(Math.floor(Math.random() * 10));
+      testArray.push(Math.floor(Math.random() * 100));
     }
   });
 
@@ -41,7 +41,7 @@ describe ("Sorting an array", function() {
 
   describe ("mergeSort", function() {
     it ("does not change the original array", function() {
-      let referenceArray = testArray;
+      let referenceArray = testArray.slice(0);
       mergeSort(testArray);
       expect(testArray).toEqual(referenceArray);
     });
