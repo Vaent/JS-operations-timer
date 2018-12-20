@@ -1,22 +1,24 @@
 "use strict";
 
 function selectionSort(array) {
-  // given an array of values with the same data type
-  // produce an array with the same values sorted from lowest to highest
-
-  // (copy array first & operate on copy)
-  // let sortedArray = [];
-  // while array.length > 0
-  //   let minValueWithIndex = [array[0], 0];
-  //   for i = 0; i < array.length; i++
-  //     if array[i] === minValueWithIndex[0]
-  //       minValueWithIndex.push(i); // record all indices that hold the minValue
-  //     else if array[i] < minValueWithIndex[0]
-  //       minValueWithIndex = [array[i], i];
-  //   for i = minValueWithIndex.length - 1; i > 0; i--
-  //     array[i] swap with array[array.length - 1]
-  //     sortedArray.push(array.pop);
-  // return sortedArray;
+  let tempArray = array.slice(0),
+    sortedArray = [];
+  while (tempArray.length > 0) {
+    let minValueWithIndex = [tempArray[0], 0];
+    for (let i = 1; i < tempArray.length; i++) {
+      if (tempArray[i] === minValueWithIndex[0]) {
+        minValueWithIndex.push(i); // record all indices that hold the minValue
+      } else if (tempArray[i] < minValueWithIndex[0]) {
+        minValueWithIndex = [tempArray[i], i];
+      }
+    }
+    for (let i = minValueWithIndex.length - 1; i > 0; i--) {
+      [tempArray[minValueWithIndex[i]], tempArray[tempArray.length - 1]] =
+      [tempArray[tempArray.length - 1], tempArray[minValueWithIndex[i]]];
+      sortedArray.push(tempArray.pop());
+    }
+  }
+  return sortedArray;
 }
 
 function mergeSort(array) {

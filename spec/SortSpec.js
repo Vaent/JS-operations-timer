@@ -5,14 +5,14 @@ describe ("Sorting an array", function() {
 
   beforeEach (function() {
     testArray = [];
-    for (let i = 0; i < 100; i++) {
-      testArray.push(Math.floor(Math.random() * i));
+    for (let i = 0; i < 10; i++) {
+      testArray.push(Math.floor(Math.random() * 10));
     }
   });
 
   describe ("selectionSort", function() {
     it ("does not change the original array", function() {
-      let referenceArray = testArray;
+      let referenceArray = testArray.slice(0);
       selectionSort(testArray);
       expect(testArray).toEqual(referenceArray);
     });
