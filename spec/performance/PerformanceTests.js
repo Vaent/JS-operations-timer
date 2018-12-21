@@ -54,6 +54,8 @@ function doAltAssignToGroups(listOfStudents) {
   // test(reverseCopyStartEmpty, "reverse copied array v2", 10, 50000, 20);
   // test(reverseCopyStartEmptyAndPush, "reverse copied array v3", 10, 50000, 20);
   // test(otherReverseCopy, "reverse copied array, method 2", 10, 50000, 20);
-  test(selectionSort, "selection sort", 5, 1000, 20);
-  test(mergeSort, "merge sort", 5, 1000, 20);
+
+  // test(selectionSort, "selection sort", 5, 1000, 20);
+  test(mergeSort, "merge sort", 5, 8192, 20);
+  test(threeBaseMergeSort, "3-based merge sort", 5, 8192, 20);
 })();
